@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brooklyn Gilbert — UX/UI Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        },
+                        pink: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                        },
+                        teal: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fefcfe;
+            color: #2d2d3a;
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #9333ea, #ec4899, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 50%, #ccfbf1 100%);
+        }
+
+        .gradient-bg-soft {
+            background: linear-gradient(180deg, #fefcfe 0%, #faf5ff 40%, #fce7f3 70%, #f0fdfa 100%);
+        }
+
+        .gradient-btn {
+            background: linear-gradient(135deg, #9333ea, #a855f7, #c084fc);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gradient-btn:hover {
+            background: linear-gradient(135deg, #7e22ce, #9333ea, #a855f7);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -8px rgba(147, 51, 234, 0.45);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px -15px rgba(147, 51, 234, 0.18);
+        }
+
+        .step-card {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .step-card:hover .step-number {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step-number {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portfolio-card .portfolio-overlay {
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-card:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blog-card:hover .blog-img {
+            transform: scale(1.05);
+        }
+
+        .blog-img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .service-icon {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #9333ea, #ec4899);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-up.delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .fade-up.delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .fade-up.delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .fade-up.delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .blob {
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .logo-gradient {
+            background: linear-gradient(135deg, #9333ea, #ec4899, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-dark {
+            background: linear-gradient(135deg, #1e1033 0%, #2d1b4e 40%, #1a3a3a 100%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #faf5ff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #d8b4fe, #f9a8d4);
+            border-radius: 4px;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .client-logo {
+            filter: grayscale(100%) opacity(0.4);
+            transition: all 0.4s ease;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        .toast {
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#home" class="text-2xl font-bold logo-gradient font-serif">Portfolio</a>
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#home"
+                    class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Home</a>
+                <a href="#about"
+                    class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">About</a>
+                <a href="#portfolio"
+                    class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Portfolio</a>
+                <a href="#blog"
+                    class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Blog</a>
+                <a href="#services"
+                    class="nav-link text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Services</a>
+                <a href="#contact"
+                    class="gradient-btn text-white text-sm font-medium px-6 py-2.5 rounded-full inline-block">Contact</a>
+            </div>
+            <button id="menuBtn" class="lg:hidden text-gray-700 text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+        class="mobile-menu fixed inset-0 z-[60] bg-white/95 backdrop-blur-xl flex flex-col items-center justify-center gap-6">
+        <button id="closeMenu" class="absolute top-6 right-6 text-2xl text-gray-700"><i
+                class="fas fa-times"></i></button>
+        <a href="#home"
+            class="mobile-link text-xl font-medium text-gray-700 hover:text-brand-600 transition-colors">Home</a>
+        <a href="#about"
+            class="mobile-link text-xl font-medium text-gray-700 hover:text-brand-600 transition-colors">About</a>
+        <a href="#portfolio"
+            class="mobile-link text-xl font-medium text-gray-700 hover:text-brand-600 transition-colors">Projects</a>
+        <a href="#services"
+            class="mobile-link text-xl font-medium text-gray-700 hover:text-brand-600 transition-colors">Services</a>
+        <a href="#contact" class="gradient-btn text-white font-medium px-8 py-3 rounded-full mt-2">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden gradient-bg-soft">
+        <!-- Decorative blobs -->
+        <div class="blob w-96 h-96 bg-brand-300 top-20 -left-48"></div>
+        <div class="blob w-80 h-80 bg-pink-300 bottom-20 right-10"></div>
+        <div class="blob w-64 h-64 bg-teal-300 top-1/2 left-1/3"></div>
+
+        <div class="max-w-7xl mx-auto px-6 pt-28 pb-16 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="fade-up">
+                <div
+                    class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-brand-200/50 rounded-full px-4 py-2 mb-6">
+                    <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span>
+                    <span class="text-xs font-medium text-gray-500">Available for freelance work</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                    Hello, I'm<br>
+                    <span class="gradient-text font-serif italic">Durgesh Kumar</span>
+                </h1>
+                <p class="text-gray-500 text-lg leading-relaxed mb-8 max-w-xl">
+                    I'm a freelance UX/UI designer and developer based in India. I strive to build immersive and
+                    beautiful web applications through carefully crafted code and user-centric design.
+                </p>
+                <div class="flex flex-wrap items-center gap-4 mb-12">
+                    <a href="#contact"
+                        class="gradient-btn text-white font-medium px-8 py-3.5 rounded-full text-sm inline-flex items-center gap-2">
+                        Say Hello
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#portfolio"
+                        class="border border-brand-200 text-brand-600 font-medium px-8 py-3.5 rounded-full text-sm hover:bg-brand-50 transition-all inline-flex items-center gap-2">
+                        View Work
+                        <i class="fas fa-arrow-down text-xs"></i>
+                    </a>
+                </div>
+                <div class="flex flex-wrap gap-8 md:gap-12">
+                    <div>
+                        <div class="text-3xl font-bold gradient-text">1 Y.</div>
+                        <div class="text-xs text-gray-400 mt-1 font-medium">Experience</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold gradient-text">10+</div>
+                        <div class="text-xs text-gray-400 mt-1 font-medium">Projects Completed</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold gradient-text">3</div>
+                        <div class="text-xs text-gray-400 mt-1 font-medium">Happy Clients</div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade-up delay-2 flex justify-center lg:justify-end">
+                <div class="relative">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-br from-brand-200 via-pink-200 to-teal-200 rounded-3xl blur-2xl opacity-40">
+                    </div>
+                    <div
+                        class="relative w-72 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shadow-2xl border-2 border-white/60 floating">
+                        <img src="https://tse4.mm.bing.net/th/id/OIP.j2ROa7f2kw7qOLv6XrPtxQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+                            alt="Brooklyn Gilbert" class="w-full h-full object-cover">
+                    </div>
+                    <div
+                        class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 flex items-center gap-3 border border-brand-100/50">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-400 to-pink-400 flex items-center justify-center">
+                            <i class="fas fa-trophy text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold text-gray-800">Award Winner</div>
+                            <div class="text-xs text-gray-400">2024 Design Award</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="blob w-72 h-72 bg-pink-200 -top-20 right-0"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-up relative">
+                    <div
+                        class="absolute -inset-3 bg-gradient-to-br from-brand-100 via-pink-100 to-teal-100 rounded-3xl blur-xl opacity-50">
+                    </div>
+                    <div class="relative rounded-3xl overflow-hidden shadow-xl">
+                        <img src="https://tse3.mm.bing.net/th/id/OIP.pEgPLyvNtfqrENotl1o5jwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+                            alt="About Brooklyn" class="w-full h-80 md:h-[480px] object-cover">
+                    </div>
+                    <div
+                        class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-5 border border-brand-100/50">
+                        <div class="flex items-center gap-1 mb-1">
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                        </div>
+                        <div class="text-xs text-gray-400">5.0 Rating on Dribbble</div>
+                    </div>
+                </div>
+                <div class="fade-up delay-1">
+                    <div
+                        class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200/40 rounded-full px-4 py-1.5 mb-4">
+                        <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">About Me</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                        I am Professional<br>
+                        <span class="gradient-text font-serif italic">User Experience Designer</span>
+                    </h2>
+                    <p class="text-gray-500 leading-relaxed mb-8">
+                        I design and develop services for customers specializing in creating stylish, modern websites,
+                        web services and online stores. My passion is to design digital user experiences through
+                        meaningful interactions.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <a href="#portfolio"
+                            class="gradient-btn text-white font-medium px-7 py-3 rounded-full text-sm inline-flex items-center gap-2">
+                            My Projects
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#contact"
+                            class="gradient-btn text-white font-medium px-8 py-3.5 rounded-full text-sm inline-flex items-center gap-2">
+                            Say Hello
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400 font-medium">Follow me</span>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all">
+                                <i class="fab fa-dribbble text-sm"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all">
+                                <i class="fab fa-linkedin-in text-sm"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all">
+                                <i class="fab fa-instagram text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 gradient-bg relative overflow-hidden">
+        <div class="blob w-80 h-80 bg-brand-300 top-0 left-0"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 fade-up">
+                <div
+                    class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm border border-brand-200/40 rounded-full px-4 py-1.5 mb-4">
+                    <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">Services</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    What I <span class="gradient-text font-serif italic">do?</span>
+                </h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">I offer end-to-end design and development services to bring
+                    your digital vision to life.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="fade-up delay-1 service-card bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-brand-100/40 shadow-sm card-hover text-center">
+                    <div
+                        class="service-icon w-16 h-16 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-500 mx-auto mb-6 text-2xl">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">User Experience (UX)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Research, usability testing, wireframing, and
+                        information architecture to create intuitive user journeys.</p>
+                </div>
+                <div
+                    class="fade-up delay-2 service-card bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-pink-100/40 shadow-sm card-hover text-center">
+                    <div
+                        class="service-icon w-16 h-16 rounded-2xl bg-pink-50 border border-pink-100 flex items-center justify-center text-pink-500 mx-auto mb-6 text-2xl">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">User Interface (UI)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Visual design, layout systems, branding, and design
+                        systems that create beautiful and cohesive interfaces.</p>
+                </div>
+                <div
+                    class="fade-up delay-3 service-card bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-teal-100/40 shadow-sm card-hover text-center">
+                    <div
+                        class="service-icon w-16 h-16 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-500 mx-auto mb-6 text-2xl">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Web Development</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Responsive websites and web applications built with
+                        modern technologies and clean, maintainable code.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 gradient-bg relative overflow-hidden">
+        <div class="blob w-96 h-96 bg-pink-200 top-20 -left-48"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 fade-up">
+                <div
+                    class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm border border-brand-200/40 rounded-full px-4 py-1.5 mb-4">
+                    <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">Portfolio</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Featured <span class="gradient-text font-serif italic">Work</span>
+                </h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Here's a selection of my recent work.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="fade-up delay-1 portfolio-card rounded-3xl overflow-hidden shadow-sm bg-white card-hover border border-white/60">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="https://picsum.photos/seed/dashboard-1/600/450" alt="Product Admin Dashboard"
+                            class="portfolio-img w-full h-full object-cover">
+                        <div
+                            class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-brand-900/80 via-brand-900/20 to-transparent flex items-end p-6">
+                            <a href="#"
+                                class="gradient-btn text-white text-xs font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-2">
+                                Case Study <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold mb-1">Product Admin Dashboard</h3>
+                        <p class="text-gray-400 text-sm">Analytics & data visualization platform</p>
+                    </div>
+                </div>
+                <div
+                    class="fade-up delay-2 portfolio-card rounded-3xl overflow-hidden shadow-sm bg-white card-hover border border-white/60">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="https://picsum.photos/seed/ecommerce-2/600/450" alt="E-Commerce Redesign"
+                            class="portfolio-img w-full h-full object-cover">
+                        <div
+                            class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-brand-900/80 via-brand-900/20 to-transparent flex items-end p-6">
+                            <a href="#"
+                                class="gradient-btn text-white text-xs font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-2">
+                                Case Study <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold mb-1">Product Admin Dashboard</h3>
+                        <p class="text-gray-400 text-sm">Modern shopping experience redesign</p>
+                    </div>
+                </div>
+                <div
+                    class="fade-up delay-3 portfolio-card rounded-3xl overflow-hidden shadow-sm bg-white card-hover border border-white/60">
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="https://picsum.photos/seed/health-app-3/600/450" alt="Health & Wellness App"
+                            class="portfolio-img w-full h-full object-cover">
+                        <div
+                            class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-brand-900/80 via-brand-900/20 to-transparent flex items-end p-6">
+                            <a href="#"
+                                class="gradient-btn text-white text-xs font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-2">
+                                Case Study <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold mb-1">Product Admin Dashboard</h3>
+                        <p class="text-gray-400 text-sm">Mobile-first wellness tracking app</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 cta-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute w-96 h-96 bg-brand-600 rounded-full filter blur-[120px] -top-20 -left-20"></div>
+            <div class="absolute w-80 h-80 bg-teal-500 rounded-full filter blur-[100px] bottom-0 right-0"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 fade-up">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                Do you have a Project Idea?<br>
+                <span class="font-serif italic"
+                    style="background: linear-gradient(135deg, #c084fc, #f9a8d4, #5eead4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Let's
+                    discuss your project!</span>
+            </h2>
+            <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                Let's create something amazing together.
+            </p>
+            <a href="#contact"
+                class="inline-flex items-center gap-2 bg-white text-brand-700 font-semibold px-10 py-4 rounded-full hover:bg-brand-50 transition-all hover:shadow-xl hover:shadow-brand-500/20 hover:-translate-y-1">
+                Let's work together
+                <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="blob w-72 h-72 bg-brand-200 top-10 right-20"></div>
+        <div class="max-w-4xl mx-auto px-6 relative z-10 fade-up">
+            <div class="text-center mb-12">
+                <div
+                    class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200/40 rounded-full px-4 py-1.5 mb-4">
+                    <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">Testimonial</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold">
+                    What Clients <span class="gradient-text font-serif italic">Say</span>
+                </h2>
+            </div>
+            <div class="bg-white rounded-3xl p-10 md:p-14 border border-gray-100 shadow-sm relative">
+                <div
+                    class="absolute -top-5 left-10 w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-pink-400 flex items-center justify-center">
+                    <i class="fas fa-quote-left text-white text-sm"></i>
+                </div>
+                <p class="text-gray-600 text-lg md:text-xl leading-relaxed mb-8 relative z-10">
+                    "Their work demonstrated the final delivery was beyond professional. The end result was a product
+                    that not only met our needs but also impressed our stakeholders."
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-brand-200">
+                        <img src="https://picsum.photos/seed/testimonial-person/120/120" alt="Brooklyn Gilbert"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="font-bold text-gray-800">Brooklyn Gilbert</div>
+                        <div class="text-sm text-gray-400">Manager, ABC Company</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="py-16 border-y border-gray-100 bg-white/50">
+        <div class="max-w-7xl mx-auto px-6 fade-up">
+            <div class="text-center mb-10">
+                <div
+                    class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200/40 rounded-full px-4 py-1.5 mb-4">
+                    <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">Happy Clients</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold">
+                    Trusted <span class="gradient-text font-serif italic">Brands</span>
+                </h2>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-10 md:gap-16">
+                <div class="client-logo"><i class="fab fa-adobe text-4xl text-gray-600"></i></div>
+                <div class="client-logo"><i class="fab fa-linkedin text-4xl text-gray-600"></i></div>
+                <div class="client-logo"><i class="fab fa-amazon text-4xl text-gray-600"></i></div>
+                <div class="client-logo"><i class="fab fa-medium text-4xl text-gray-600"></i></div>
+                <div class="client-logo"><i class="fab fa-spotify text-4xl text-gray-600"></i></div>
+                <div class="client-logo"><i class="fab fa-google text-4xl text-gray-600"></i></div>
+                <div class="client-logo"><i class="fab fa-dribbble text-4xl text-gray-600"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-24 relative overflow-hidden">
+        <div class="blob w-80 h-80 bg-teal-200 bottom-20 -left-20"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 fade-up">
+                <div
+                    class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200/40 rounded-full px-4 py-1.5 mb-4">
+                    <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">Blog</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Latest <span class="gradient-text font-serif italic">Articles</span>
+                </h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Check out my recent blog posts</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <article
+                    class="fade-up delay-1 blog-card bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm card-hover">
+                    <div class="overflow-hidden aspect-[4/3]">
+                        <img src="https://picsum.photos/seed/blog-cognitive/500/375" alt="Cognitive UI"
+                            class="blog-img w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span
+                                class="text-[10px] font-semibold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full uppercase tracking-wider">UX
+                                Design</span>
+                            <span class="text-[10px] text-gray-400">Jan 15, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-sm leading-snug mb-2">Designing for Cognitive User Interfaces</h3>
+                        <a href="#"
+                            class="text-brand-500 text-xs font-medium inline-flex items-center gap-1 hover:gap-2 transition-all">
+                            Read More <i class="fas fa-arrow-right text-[9px]"></i>
+                        </a>
+                    </div>
+                </article>
+                <article
+                    class="fade-up delay-2 blog-card bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm card-hover">
+                    <div class="overflow-hidden aspect-[4/3]">
+                        <img src="https://picsum.photos/seed/blog-dashboard/500/375" alt="Dashboard Designs"
+                            class="blog-img w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span
+                                class="text-[10px] font-semibold text-pink-500 bg-pink-50 px-2.5 py-1 rounded-full uppercase tracking-wider">UI
+                                Design</span>
+                            <span class="text-[10px] text-gray-400">Jan 08, 2025</span>
+                        </div>
+                        <h3 class="font-bold text-sm leading-snug mb-2">Top 10 Effective Dashboard Designs</h3>
+                        <a href="#"
+                            class="text-brand-500 text-xs font-medium inline-flex items-center gap-1 hover:gap-2 transition-all">
+                            Read More <i class="fas fa-arrow-right text-[9px]"></i>
+                        </a>
+                    </div>
+                </article>
+                <article
+                    class="fade-up delay-3 blog-card bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm card-hover">
+                    <div class="overflow-hidden aspect-[4/3]">
+                        <img src="https://picsum.photos/seed/blog-dataviz/500/375" alt="Data Visualization"
+                            class="blog-img w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span
+                                class="text-[10px] font-semibold text-teal-600 bg-teal-50 px-2.5 py-1 rounded-full uppercase tracking-wider">Data</span>
+                            <span class="text-[10px] text-gray-400">Dec 22, 2024</span>
+                        </div>
+                        <h3 class="font-bold text-sm leading-snug mb-2">How to Visualize Data for Better Results</h3>
+                        <a href="#"
+                            class="text-brand-500 text-xs font-medium inline-flex items-center gap-1 hover:gap-2 transition-all">
+                            Read More <i class="fas fa-arrow-right text-[9px]"></i>
+                        </a>
+                    </div>
+                </article>
+                <article
+                    class="fade-up delay-4 blog-card bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm card-hover">
+                    <div class="overflow-hidden aspect-[4/3]">
+                        <img src="https://picsum.photos/seed/blog-responsive/500/375" alt="Responsive Design"
+                            class="blog-img w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span
+                                class="text-[10px] font-semibold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full uppercase tracking-wider">Development</span>
+                            <span class="text-[10px] text-gray-400">Dec 15, 2024</span>
+                        </div>
+                        <h3 class="font-bold text-sm leading-snug mb-2">Responsive Design: Adapting to All Devices</h3>
+                        <a href="#"
+                            class="text-brand-500 text-xs font-medium inline-flex items-center gap-1 hover:gap-2 transition-all">
+                            Read More <i class="fas fa-arrow-right text-[9px]"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 gradient-bg relative overflow-hidden">
+        <div class="blob w-80 h-80 bg-brand-300 -bottom-20 right-0"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 fade-up">
+                <div
+                    class="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm border border-brand-200/40 rounded-full px-4 py-1.5 mb-4">
+                    <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">Contact</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Let's discuss your <span class="gradient-text font-serif italic">Project</span>
+                </h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Have a project in mind? I'd love to hear about it. Send me a
+                    message and let's start a conversation.</p>
+            </div>
+            <div class="grid lg:grid-cols-5 gap-12">
+                <div class="lg:col-span-2 fade-up delay-1 space-y-8">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-brand-100/40 shadow-sm">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-500 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm mb-1">Address</h4>
+                                <p class="text-gray-500 text-sm">123 Main Street, New York, USA</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 mb-6">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-pink-50 border border-pink-100 flex items-center justify-center text-pink-500 flex-shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm mb-1">Email</h4>
+                                <a href="mailto:info@email.com"
+                                    class="text-gray-500 text-sm hover:text-brand-500 transition-colors">info@email.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-500 flex-shrink-0">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm mb-1">Phone</h4>
+                                <a href="tel:+011234567890"
+                                    class="text-gray-500 text-sm hover:text-brand-500 transition-colors">+01 123 456
+                                    7890</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="www.dribbble.com"
+                            class="w-11 h-11 rounded-full bg-white/80 backdrop-blur-sm border border-brand-100/40 flex items-center justify-center text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all shadow-sm">
+                            <i class="fab fa-dribbble text-sm"></i>
+                        </a>
+                        <a href="www.linkedin.com"
+                            class="w-11 h-11 rounded-full bg-white/80 backdrop-blur-sm border border-brand-100/40 flex items-center justify-center text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all shadow-sm">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="www.instagram.com"
+                            class="w-11 h-11 rounded-full bg-white/80 backdrop-blur-sm border border-brand-100/40 flex items-center justify-center text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all shadow-sm">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="www.dribbble.com"
+                            class="w-11 h-11 rounded-full bg-white/80 backdrop-blur-sm border border-brand-100/40 flex items-center justify-center text-brand-500 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all shadow-sm">
+                            <i class="fab fa-behance text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-3 fade-up delay-2">
+                    <form id="contactForm"
+                        class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-brand-100/40 shadow-sm">
+                        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                            <div>
+                                <label class="text-xs font-semibold text-gray-600 mb-2 block">Your Name</label>
+                                <input type="text" placeholder="John Doe"
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/80 text-sm focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all placeholder:text-gray-300">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-gray-600 mb-2 block">Your Email</label>
+                                <input type="email" placeholder="john@example.com"
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/80 text-sm focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all placeholder:text-gray-300">
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                            <div>
+                                <label class="text-xs font-semibold text-gray-600 mb-2 block">Location</label>
+                                <input type="text" placeholder="Your City"
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/80 text-sm focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all placeholder:text-gray-300">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-gray-600 mb-2 block">Budget</label>
+                                <select
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/80 text-sm focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all text-gray-400">
+                                    <option value="">Select Budget</option>
+                                    <option value="5k">$1k – $5k</option>
+                                    <option value="10k">$5k – $10k</option>
+                                    <option value="20k">$10k – $20k</option>
+                                    <option value="20k+">$20k+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="text-xs font-semibold text-gray-600 mb-2 block">Your Message</label>
+                            <textarea rows="5" placeholder="Tell me about your project..."
+                                class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/80 text-sm focus:outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition-all resize-none placeholder:text-gray-300"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="gradient-btn text-white font-medium px-10 py-3.5 rounded-full text-sm w-full sm:w-auto inline-flex items-center justify-center gap-2">
+                            Submit
+                            <i class="fas fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-1">
+                    <a href="#home" class="text-2xl font-bold logo-gradient font-serif block mb-4">Portfolio</a>
+                    <p class="text-sm leading-relaxed mb-6">Freelance UX/UI designer and developer crafting beautiful
+                        digital experiences.</p>
+                    <div class="flex gap-3">
+                        <a href="www.dribbble.com"
+                            class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all text-sm">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                        <a href="www.linkedin.com"
+                            class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all text-sm">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="www.instagram.com"
+                            class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white hover:border-brand-500 transition-all text-sm">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-5">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-sm hover:text-brand-400 transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-sm hover:text-brand-400 transition-colors">About</a></li>
+                        <li><a href="#portfolio" class="text-sm hover:text-brand-400 transition-colors">Portfolio</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-5">Explore</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#blog" class="text-sm hover:text-brand-400 transition-colors">Blog</a></li>
+                        <li><a href="#services" class="text-sm hover:text-brand-400 transition-colors">Services</a></li>
+                        <li><a href="#contact" class="text-sm hover:text-brand-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-5">Newsletter</h4>
+                    <p class="text-sm mb-4">Subscribe to get updates on my latest work and articles.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email"
+                            class="flex-1 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-brand-400 transition-all">
+                        <button
+                            class="gradient-btn w-10 h-10 rounded-full flex items-center justify-center text-white flex-shrink-0">
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs">Copyright © 2025 Brooklyn. All rights reserved.</p>
+                <p class="text-xs">Designed by ThemeXYZ</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+        class="toast fixed bottom-6 right-6 z-[70] bg-white rounded-2xl shadow-xl border border-brand-100 p-4 flex items-center gap-3 max-w-sm">
+        <div
+            class="w-10 h-10 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-500 flex-shrink-0">
+            <i class="fas fa-check"></i>
+        </div>
+        <div>
+            <div class="text-sm font-semibold text-gray-800">Message Sent!</div>
+            <div class="text-xs text-gray-400">Thank you, I'll get back to you soon.</div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="backToTop"
+        class="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full gradient-btn text-white shadow-lg flex items-center justify-center opacity-0 translate-y-4 transition-all duration-300 pointer-events-none">
+        <i class="fas fa-arrow-up text-sm"></i>
+    </button>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                navbar.classList.add('bg-white/80', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-gray-100/50');
+            } else {
+                navbar.classList.remove('bg-white/80', 'backdrop-blur-xl', 'shadow-sm', 'border-b', 'border-gray-100/50');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Back to top
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 600) {
+                backToTop.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                backToTop.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+                backToTop.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Contact form
+        const contactForm = document.getElementById('contactForm');
+        const toast = document.getElementById('toast');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            toast.classList.add('show');
+            contactForm.reset();
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        });
+
+        // Active nav link highlight
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-brand-600');
+                link.classList.add('text-gray-600');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-brand-600');
+                    link.classList.remove('text-gray-600');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
